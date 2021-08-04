@@ -17,28 +17,37 @@ function ListCardPreview(props) {
         <Card.Body className="m-0 p-0">
           <div className="row m-0 p-0">
             <div className="col m-0 p-0">
-              <img
-                src={showList[0].image.medium}
-                className="d-block w-100"
-                alt="..."
-              />
-              <img
-                src={showList[2].image.medium}
-                className="d-block w-100"
-                alt="..."
-              />
+              <Link to={`/show/${showList[0].id}`}>
+                <img
+                  src={showList[0].image.medium}
+                  className="d-block w-100"
+                  alt="..."
+                />
+              </Link>
+              <Link to={`/show/${showList[2].id}`}>
+                <img
+                  src={showList[2].image.medium}
+                  className="d-block w-100"
+                  alt="..."
+                />
+              </Link>
             </div>
             <div className="col m-0 p-0">
-              <img
-                src={showList[1].image.medium}
-                className="d-block w-100"
-                alt="...."
-              />
-              <img
-                src={showList[3].image.medium}
-                className="d-block w-100"
-                alt="..."
-              />
+              <Link to={`/show/${showList[1].id}`}>
+                <img
+                  src={showList[1].image.medium}
+                  className="d-block w-100"
+                  alt="...."
+                />
+              </Link>
+
+              <Link to={`/show/${showList[3].id}`}>
+                <img
+                  src={showList[3].image.medium}
+                  className="d-block w-100"
+                  alt="..."
+                />
+              </Link>
             </div>
           </div>
           <div className="row">
