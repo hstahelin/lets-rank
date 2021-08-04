@@ -46,12 +46,12 @@ function ShowDetail(props) {
                     {show.officialSite}
                   </a>
                 </p>
-                <p>
+                {/* <p>
                   <strong>Source: </strong>
                   <a href={show.url} target="_blank" rel="noreferrer">
                     TV Maze
                   </a>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

@@ -42,7 +42,7 @@ function Header() {
             {/* <Link to="/" className="nav-link">
               <i className="bi bi-house"></i> Home2
             </Link> */}
-            <Nav.Link as={Link} to="/myList" className="mx-2">
+            <Nav.Link as={Link} to="/myLists/Let's Rank" className="mx-2">
               <i className="bi bi-list-ul"></i> My Lists
             </Nav.Link>
             <Nav.Link as={Link} to="/create" className="mx-2">

@@ -2,7 +2,7 @@ export const LISTS = [
   {
     id: 0,
     name: "Top 10 Action",
-    user: "IMDB",
+    user: "Let's Rank",
     list: [4, 11, 15, 19, 21, 24, 29, 31, 59, 73],
   },
   {
