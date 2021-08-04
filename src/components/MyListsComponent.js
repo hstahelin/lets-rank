@@ -6,7 +6,7 @@ import { LISTS } from "../shared/lists";
 function MyLists(props) {
   //const myLists = LISTS.filter((list) => list.user === props.username);
   const listId = props.listId ? props.listId : 0;
-  const currentList = LISTS.filter((list) => list.id == listId)[0];
+  const currentList = LISTS.filter((list) => list.id === Number(listId))[0];
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
   return (
     <div className="container mt-4">
@@ -65,9 +65,9 @@ function MyLists(props) {
                 </p>
               </div>
               <div className="card-footer text-center">
-                <a href="#" className="text-decoration-none text-nowrap">
+                <Link to="/home" className="text-decoration-none text-nowrap">
                   <i className="bi bi-x-square"></i> Remove
-                </a>
+                </Link>
               </div>
             </div>
           </div>
