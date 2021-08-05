@@ -33,7 +33,12 @@ function MyLists(props) {
         <div className="row">
           <div className="col featured mb-3 d-flex">
             <div className="me-auto align-self-center">
-              <h3>{currentList.name}</h3>
+              <h3>
+                {currentList.name}{" "}
+                <Badge pill bg="primary">
+                  {currentList.list.length}
+                </Badge>
+              </h3>
             </div>
             <div className="align-self-center">
               <a href="recommendations.html" className="btn btn-info btn-sm">

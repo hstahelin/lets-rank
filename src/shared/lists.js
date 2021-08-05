@@ -25,6 +25,12 @@ export const LISTS = [
   },
   {
     id: 4,
+    name: "Best Science-Fiction",
+    user: "Let's Rank",
+    list: [134, 64, 94, 166, 95, 117, 158, 165, 180],
+  },
+  {
+    id: 5,
     name: "Top 10 Horror",
     user: "Let's Rank",
     list: [20, 3, 12, 15, 16, 25, 26, 27, 30, 33],

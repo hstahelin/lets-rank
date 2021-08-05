@@ -14,7 +14,7 @@ function Footer(props) {
               <i className="bi bi-house"></i> Home
             </Link>
             <Link
-              to="/myList"
+              to="/myLists/Let's Rank"
               className="text-decoration-none border-end border-info px-2 text-nowrap"
             >
               <i className="bi bi-list-ul"></i> My List

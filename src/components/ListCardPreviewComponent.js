@@ -75,10 +75,7 @@ function ListCardPreview(props) {
           </div>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-evenly">
-          <Link
-            to={`/myLists/Let's Rank/${props.list.id}`}
-            className="text-decoration-none"
-          >
+          <Link to={`/list/${props.list.id}`} className="text-decoration-none">
             <i className="bi bi-card-list"></i> Details
           </Link>
           <i className="bi bi-plus-square"></i>
