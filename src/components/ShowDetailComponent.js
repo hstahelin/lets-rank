@@ -29,7 +29,9 @@ function ShowDetail(props) {
               <div className="col-12">
                 <p>
                   <strong>Genres: </strong>{" "}
-                  {show.genres.map((genre) => `${genre} | `)}
+                  {show.genres.map((genre, index, array) =>
+                    index + 1 === array.length ? `${genre}` : `${genre} | `
+                  )}
                 </p>
 
                 <p>

@@ -18,7 +18,7 @@ function Header() {
       className="navbar-dark mt-0 pt-0"
     >
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to="/home">
           <img src="/assets/images/logo.svg" className="logo" alt="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

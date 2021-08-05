@@ -5,6 +5,7 @@ import ShowDetail from "./ShowDetailComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import MyLists from "./MyListsComponent";
+import ListDetail from "./ListDetailComponent";
 
 function ShowDetailWithId({ match }) {
   return <ShowDetail showId={+match.params.showId} />;
@@ -20,6 +21,10 @@ function MyListsUserList({ match }) {
   );
 }
 
+function ListWithId({ match }) {
+  return <ListDetail listId={match.params.listId} />;
+}
+
 function Main() {
   return (
     <div>
@@ -29,6 +34,7 @@ function Main() {
         <Route path="/show/:showId" component={ShowDetailWithId} />
         <Route path="/myLists/:username/:listId" component={MyListsUserList} />
         <Route path="/myLists/:username" component={MyListsUser} />
+        <Route path="/list/:listId" component={ListWithId} />
         <Redirect to="/home" />
       </Switch>
       <Footer />

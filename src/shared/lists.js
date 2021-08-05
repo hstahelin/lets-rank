@@ -23,4 +23,10 @@ export const LISTS = [
     user: "Let's Rank",
     list: [290, 409, 417, 421, 472, 489, 496, 672, 691, 698],
   },
+  {
+    id: 4,
+    name: "Top 10 Horror",
+    user: "Let's Rank",
+    list: [20, 3, 12, 15, 16, 25, 26, 27, 30, 33],
+  },
 ];
