@@ -71,15 +71,45 @@ function ShowDetail(props) {
                   <strong>Included in: </strong>
                   <Badge bg="primary">
                     {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
-                    Lists
+                    Public Lists
+                  </Badge>{" "}
+                  <Badge bg="primary">
+                    {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
+                    Own Lists
                   </Badge>
                 </p>
-                {/* <p>
-                  <strong>Source: </strong>
-                  <a href={show.url} target="_blank" rel="noreferrer">
-                    TV Maze
-                  </a>
-                </p> */}
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 col-md-10 col-lg-8">
+                <form action="">
+                  <div className="input-group">
+                    <span
+                      className="input-group-text searchBar bi bi-plus-square"
+                      id="basic-addon1"
+                    ></span>
+                    <select
+                      className="form-select"
+                      id="floatingSelect"
+                      name="listOption"
+                    >
+                      <option selected>Select List</option>
+                      <option value="1" disabled>
+                        Top 10 Action
+                      </option>
+                      <option value="2">Top 10 Kids</option>
+                      <option value="3">Best Science-Fiction</option>
+                      <option value="4">Top 10 Horror</option>
+                      <option value="5">All Time Best</option>
+                    </select>
+                    <button type="submit" className="btn btn-primary">
+                      Add to List
+                    </button>
+                    <button type="button" className="btn btn-success ms-1">
+                      Create List
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

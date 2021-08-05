@@ -6,7 +6,6 @@ import { SHOWS } from "../shared/shows";
 
 function ListCardPreview(props) {
   const showList = SHOWS.filter((show) => props.list.list.includes(show.id));
-  //console.table("FILTERED List: " + JSON.stringify(showList));
   return (
     <div className="col-12 col-sm-6 col-lg-3 mb-3">
       <Card className="shadow">
