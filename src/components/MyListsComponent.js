@@ -41,9 +41,9 @@ function MyLists(props) {
               </h3>
             </div>
             <div className="align-self-center">
-              <a href="recommendations.html" className="btn btn-info btn-sm">
+              <Link to="/home" className="btn btn-info btn-sm">
                 <i className="bi bi-stars"></i> Get recommendations
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -76,9 +76,7 @@ function MyLists(props) {
                   </p>
                 </div>
                 <div className="card-footer text-center">
-                  <Link to="/home" className="text-decoration-none text-nowrap">
-                    <i className="bi bi-x-square"></i> Remove
-                  </Link>
+                  <i className="bi bi-x-square"></i> Remove
                 </div>
               </div>
             </div>
@@ -126,9 +124,9 @@ function MyLists(props) {
       <div className="container mt-4">
         <div className="row">
           <div className="col d-flex justify-content-center">
-            <a href="recommendations.html" class="btn btn-info btn-lg">
+            <Link to="/home" class="btn btn-info btn-lg">
               <i className="bi bi-stars"></i> Get recommendations
-            </a>
+            </Link>
           </div>
         </div>
       </div>

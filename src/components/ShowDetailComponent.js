@@ -1,4 +1,4 @@
-import { Alert, Badge } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import React from "react";
 import { SHOWS } from "../shared/shows";
 import { LISTS } from "../shared/lists";
@@ -24,7 +24,11 @@ function ShowDetail(props) {
             </div>
             <div className="row">
               <div className="col-12">
-                <p>{show.summary.replace(/<[^>]*>?/gm, "")}</p>
+                <p>
+                  {show.summary
+                    ? show.summary.replace(/<[^>]*>?/gm, "")
+                    : "We don't have a summary for this show yet."}
+                </p>
               </div>
             </div>
             <div className="row">

@@ -21,7 +21,7 @@ export const LISTS = [
     id: 3,
     name: "Top 10 Kids",
     user: "Let's Rank",
-    list: [290, 409, 417, 421, 472, 489, 496, 672, 691, 698],
+    list: [290, 409, 417, 421, 472, 489, 4999, 672, 691, 698],
   },
   {
     id: 4,
@@ -34,5 +34,11 @@ export const LISTS = [
     name: "Top 10 Horror",
     user: "Let's Rank",
     list: [20, 3, 12, 15, 16, 25, 26, 27, 30, 33],
+  },
+  {
+    id: 6,
+    name: "All Time Best",
+    user: "Let's Rank",
+    list: [169, 82, 5, 7, 22, 49],
   },
 ];
