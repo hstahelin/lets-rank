@@ -3,6 +3,7 @@ import { Accordion, Card, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { SHOWS } from "../shared/shows";
+import Match from "./MatchComponent";
 
 function ListCardPreview(props) {
   const showList = SHOWS.filter((show) => props.list.list.includes(show.id));
@@ -51,6 +52,13 @@ function ListCardPreview(props) {
           </div>
           <div className="row">
             <div className="col ">
+              <div>
+                {props.source === "recommendation" ? (
+                  <Match match={props.match} />
+                ) : (
+                  ""
+                )}
+              </div>
               <Accordion flush>
                 <Accordion.Item eventKey={props.list.id}>
                   <Accordion.Header>Preview</Accordion.Header>

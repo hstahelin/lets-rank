@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Navbar,
   Container,
@@ -6,10 +6,25 @@ import {
   Form,
   FormControl,
   InputGroup,
+  Modal,
+  Button,
+  FloatingLabel,
+  Accordion,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { GENRES } from "../shared/genres";
 
 function Header() {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(!showModal);
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log(JSON.stringify(data));
+    toggleModal();
+  };
+
   return (
     <Navbar
       dark="true"
@@ -45,7 +60,7 @@ function Header() {
             <Nav.Link as={Link} to="/myLists/Let's Rank" className="mx-2">
               <i className="bi bi-list-ul"></i> My Lists
             </Nav.Link>
-            <Nav.Link as={Link} to="/create" className="mx-2">
+            <Nav.Link className="mx-2" onClick={toggleModal}>
               <i className="bi bi-plus"></i> Create List
             </Nav.Link>
             <Nav.Link as={Link} to="/login" className="mx-2">
@@ -57,6 +72,75 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
       </Container>
+      {/* Create List - Modal */}
+      <Modal show={showModal} onHide={toggleModal}>
+        <Modal.Header closeButton closeVariant="white">
+          <Modal.Title className="text-light">New List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group>
+              <FloatingLabel
+                controlId="ListName"
+                label="List Name"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="text"
+                  name="listName"
+                  placeholder="List Name"
+                  {...register("listName")}
+                />
+              </FloatingLabel>
+            </Form.Group>
+            <Form.Group>
+              <FloatingLabel
+                controlId="Description"
+                label="Description"
+                className="mb-3"
+              >
+                <Form.Control
+                  as="textarea"
+                  placeholder="Description"
+                  name="description"
+                  {...register("description")}
+                />
+              </FloatingLabel>
+            </Form.Group>
+            <Form.Group>
+              <Accordion flush>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>Genres</Accordion.Header>
+                  <Accordion.Body>
+                    {GENRES.map((genre, index) => (
+                      <Form.Check
+                        key={index}
+                        type="checkbox"
+                        id={index}
+                        label={genre}
+                        name={genre}
+                        {...register(`${genre}`)}
+                      />
+                    ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={toggleModal}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleSubmit(onSubmit)}
+            type="submit"
+          >
+            Create
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Navbar>
   );
 }

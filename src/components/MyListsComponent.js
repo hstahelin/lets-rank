@@ -14,6 +14,7 @@ function MyLists(props) {
   const listId = props.listId ? props.listId : 0;
   const currentList = LISTS.filter((list) => list.id === Number(listId))[0];
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+
   return (
     <React.Fragment>
       <div className="container mt-4">
@@ -21,7 +22,7 @@ function MyLists(props) {
           <div className="col">
             <h1>
               <Button variant="outline-primary" onClick={handleShow} size="lg">
-                <i class="bi bi-list-stars"></i>
+                <i className="bi bi-list-stars"></i>
               </Button>{" "}
               My Lists{" "}
               <Badge pill bg="primary">
@@ -41,7 +42,10 @@ function MyLists(props) {
               </h3>
             </div>
             <div className="align-self-center">
-              <Link to="/home" className="btn btn-info btn-sm">
+              <Link
+                to={`/recommendations/${listId}`}
+                className="btn btn-info btn-sm"
+              >
                 <i className="bi bi-stars"></i> Get recommendations
               </Link>
             </div>
@@ -50,7 +54,10 @@ function MyLists(props) {
         <div className="row">
           {/* render */}
           {shows.map((show) => (
-            <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+            <div
+              className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3"
+              key={show.id}
+            >
               <div className="card shadow h-100">
                 <Link to={`/show/${show.id}`} className="text-decoration-none">
                   <h5 className="card-header text-truncate">{show.name}</h5>
@@ -96,6 +103,7 @@ function MyLists(props) {
             <ListGroup variant="flush">
               {myLists.map((list) => (
                 <Link
+                  key={list.id}
                   onClick={handleClose}
                   to={`/myLists/${props.username}/${list.id}`}
                   className="text-decoration-none"
@@ -124,7 +132,10 @@ function MyLists(props) {
       <div className="container mt-4">
         <div className="row">
           <div className="col d-flex justify-content-center">
-            <Link to="/home" class="btn btn-info btn-lg">
+            <Link
+              to={`/recommendations/${listId}`}
+              className="btn btn-info btn-lg"
+            >
               <i className="bi bi-stars"></i> Get recommendations
             </Link>
           </div>

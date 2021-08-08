@@ -41,4 +41,22 @@ export const LISTS = [
     user: "Let's Rank",
     list: [169, 82, 5, 7, 22, 49],
   },
+  {
+    id: 7,
+    name: "Watch Next",
+    user: "user01",
+    list: [169, 82, 5, 7, 22, 49, 28, 132],
+  },
+  {
+    id: 8,
+    name: "Best TV",
+    user: "user03",
+    list: [361, 83, 530, 385, 169, 179, 527],
+  },
+  {
+    id: 9,
+    name: "Reality best",
+    user: "user03",
+    list: [991, 114, 914, 1526, 575],
+  },
 ];

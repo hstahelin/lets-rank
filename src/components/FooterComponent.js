@@ -32,7 +32,7 @@ function Footer(props) {
         <div className="row">
           <div className="col text-end">
             <p className="small">
-              Powered by
+              Powered by{" "}
               <a
                 href="https://www.tvmaze.com/api"
                 className="text-decoration-none"

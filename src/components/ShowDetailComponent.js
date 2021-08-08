@@ -2,9 +2,11 @@ import { Badge } from "react-bootstrap";
 import React from "react";
 import { SHOWS } from "../shared/shows";
 import { LISTS } from "../shared/lists";
+import { Link, useHistory } from "react-router-dom";
 
 function ShowDetail(props) {
   const show = SHOWS.filter((elem) => elem.id === props.showId)[0];
+  const history = useHistory();
   return (
     <div className="container mt-4">
       <div className="row mb-3">
@@ -18,8 +20,15 @@ function ShowDetail(props) {
         <div className="col">
           <div className="container">
             <div className="row featured">
-              <div className="col-12">
+              <div className="col-11">
                 <h1 className="">{show.name}</h1>
+              </div>
+              <div className="col-1">
+                <h3 className="">
+                  <Link onClick={() => history.goBack()}>
+                    <i class="bi bi-backspace"></i>
+                  </Link>
+                </h3>
               </div>
             </div>
             <div className="row">
