@@ -35,8 +35,8 @@ function Recommendation(props) {
         </div>
         <div className="col-1">
           <h3>
-            <Link onClick={() => history.goBack()}>
-              <i class="bi bi-backspace"></i>
+            <Link to="" onClick={() => history.goBack()}>
+              <i className="bi bi-backspace"></i>
             </Link>
           </h3>
         </div>

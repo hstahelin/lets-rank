@@ -163,9 +163,10 @@ function Header(props) {
             Close
           </Button>
           <Button
-            variant="primary"
+            variant="danger"
             onClick={handleSubmit(onSubmit)}
             type="submit"
+            disabled="true"
           >
             Create
           </Button>

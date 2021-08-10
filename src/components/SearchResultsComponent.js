@@ -14,7 +14,7 @@ function Searchresults(props) {
       <div className="row featured mb-3">
         <div className="col">
           <h1>Search Results</h1>
-          for {props.searchText}
+          for "{props.searchText}"
         </div>
         <div className="col-1">
           <h3>
@@ -32,6 +32,7 @@ function Searchresults(props) {
               <ShowPreview key={show.id} showId={show.id} />
             )
         )}
+        {filterShows.length === 0 && <h1 className="featured">NO RESULTS</h1>}
       </div>
     </div>
   );

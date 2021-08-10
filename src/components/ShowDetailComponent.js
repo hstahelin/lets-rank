@@ -82,10 +82,10 @@ function ShowDetail(props) {
                     {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
                     Public Lists
                   </Badge>{" "}
-                  <Badge bg="primary">
+                  {/* <Badge bg="primary">
                     {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
                     Own Lists
-                  </Badge>
+                  </Badge> */}
                 </p>
               </div>
             </div>
@@ -112,10 +112,14 @@ function ShowDetail(props) {
                       <option value="4">Top 10 Horror</option>
                       <option value="5">All Time Best</option>
                     </select>
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-danger" disabled>
                       Add to List
                     </button>
-                    <button type="button" className="btn btn-success ms-1">
+                    <button
+                      type="button"
+                      className="btn btn-danger ms-1"
+                      disabled
+                    >
                       Create List
                     </button>
                   </div>

@@ -23,19 +23,19 @@ function ListDetail(props) {
             <h6>by {currentList.user}</h6>
           </div>
           <div className="align-self-center">
-            <a href="myLists.html" className="btn btn-info">
+            <button className="btn btn-danger" disabled>
               <i className="bi bi-plus-square"></i> Save List
-            </a>
+            </button>
           </div>
         </div>
       </div>
       <div className="row">
         {shows.map((show) => (
-          <div className="col-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+          <div key={show.id} className="col-6 col-md-4 col-lg-3 col-xl-2 mb-3">
             <div className="card shadow h-100">
               <Link
                 to={`/show/${show.id}`}
-                class="text-decoration-none d-block"
+                className="text-decoration-none d-block"
               >
                 <h5 className="card-header text-truncate">{show.name}</h5>
               </Link>
@@ -44,11 +44,11 @@ function ListDetail(props) {
                   <div className="col m-0 p-0">
                     <Link
                       to={`/show/${show.id}`}
-                      class="text-decoration-none d-block"
+                      className="text-decoration-none d-block"
                     >
                       <img
                         src={show.image.medium}
-                        class="d-block w-100"
+                        className="d-block w-100"
                         alt="..."
                       />
                     </Link>
@@ -65,7 +65,7 @@ function ListDetail(props) {
               <div className="card-footer">
                 <Link
                   to={`/show/${show.id}`}
-                  class="text-decoration-none d-block"
+                  className="text-decoration-none d-block"
                 >
                   <i className="bi bi-card-list"></i> Details
                 </Link>
