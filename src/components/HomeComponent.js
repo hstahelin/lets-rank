@@ -33,6 +33,8 @@ function Home(props) {
           <ShowPreview showId="82" />
           <ShowPreview showId="431" />
           <ShowPreview showId="83" />
+          <ShowPreview showId="1" />
+          <ShowPreview showId="2" />
         </div>
       </div>
     </div>

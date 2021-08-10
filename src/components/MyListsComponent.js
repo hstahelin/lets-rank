@@ -82,8 +82,9 @@ function MyLists(props) {
                     )}
                   </p>
                 </div>
-                <div className="card-footer text-center">
-                  <i className="bi bi-x-square"></i> Remove
+                <div className="card-footer text-center d-flex justify-content-center">
+                  <i className="bi bi-x-square text-danger"></i>
+                  <p className="ms-1 p-0 text-danger"> Remove</p>
                 </div>
               </div>
             </div>

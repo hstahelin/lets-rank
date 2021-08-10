@@ -5,7 +5,7 @@ import { SHOWS } from "../shared/shows";
 function ShowPreview(props) {
   const show = SHOWS.filter((elem) => elem.id === +props.showId)[0];
   return (
-    <div className="col-12 col-sm-6 col-lg-3 mb-3">
+    <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
       <div className="card h-100 shadow">
         <Link to={`/show/${show.id}`} className="text-decoration-none">
           <h5 className="card-header fw-bold text-truncate ">{show.name}</h5>
@@ -15,7 +15,7 @@ function ShowPreview(props) {
             <div className="col m-0 p-0">
               <Link to={`/show/${show.id}`}>
                 <img
-                  src={show.image.medium}
+                  src={show.image ? show.image.medium : ""}
                   className="d-block w-100"
                   alt="..."
                 />
@@ -37,7 +37,8 @@ function ShowPreview(props) {
           >
             <i className="bi bi-card-list"></i> Details
           </Link>
-          <i className="bi bi-plus-square"></i> Add to list
+          <i className="bi bi-plus-square text-danger"></i>
+          <p className="m-0 p-0 text-danger">Add to list</p>
         </div>
       </div>
     </div>

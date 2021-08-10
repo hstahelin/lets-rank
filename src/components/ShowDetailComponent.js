@@ -25,8 +25,8 @@ function ShowDetail(props) {
               </div>
               <div className="col-1">
                 <h3 className="">
-                  <Link onClick={() => history.goBack()}>
-                    <i class="bi bi-backspace"></i>
+                  <Link to="" onClick={() => history.goBack()}>
+                    <i className="bi bi-backspace"></i>
                   </Link>
                 </h3>
               </div>
@@ -101,8 +101,9 @@ function ShowDetail(props) {
                       className="form-select"
                       id="floatingSelect"
                       name="listOption"
+                      defaultValue="-1"
                     >
-                      <option selected>Select List</option>
+                      <option value="-1">Select List</option>
                       <option value="1" disabled>
                         Top 10 Action
                       </option>

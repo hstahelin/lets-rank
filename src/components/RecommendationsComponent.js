@@ -11,7 +11,6 @@ function Recommendation(props) {
   )[0];
 
   function getRecommendations(list) {
-    console.dir(list.list);
     const filteredList = LISTS.filter((e) => e.id !== list.id).map((elem) => ({
       ...elem,
       match: elem.list.reduce(
@@ -19,7 +18,6 @@ function Recommendation(props) {
         0
       ),
     }));
-    //console.dir(filteredList.sort((a, b) => b.match - a.match).slice(0, 4));
 
     return filteredList.sort((a, b) => b.match - a.match).slice(0, 8);
   }
@@ -46,12 +44,7 @@ function Recommendation(props) {
       <div className="row">
         {/* <!-- Recommended List - Best for Kids-->; */}
         {recommendList.map((list) => (
-          <ListCardPreview
-            key={list.id}
-            list={list}
-            source="recommendation"
-            match={list.match}
-          />
+          <ListCardPreview key={list.id} list={list} source="recommendation" />
         ))}
       </div>
     </div>

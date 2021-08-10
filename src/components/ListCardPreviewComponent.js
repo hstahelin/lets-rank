@@ -11,8 +11,13 @@ function ListCardPreview(props) {
     <div className="col-12 col-sm-6 col-lg-3 mb-3">
       <Card className="shadow">
         <Card.Header className="pb-0">
-          <h5 className="fw-bold">{props.list.name}</h5>
-          <p className="fs-6 mb-0 text-end">by {props.list.user}</p>
+          <h5 className="fw-bold text-truncate">{props.list.name}</h5>
+          <Link
+            to={`/user/${props.list.user}`}
+            className="text-decoration-none"
+          >
+            <p className="fs-6 mb-0 text-end">by {props.list.user}</p>
+          </Link>
         </Card.Header>
         <Card.Body className="m-0 p-0">
           <div className="row m-0 p-0">
@@ -54,7 +59,7 @@ function ListCardPreview(props) {
             <div className="col ">
               <div>
                 {props.source === "recommendation" ? (
-                  <Match match={props.match} />
+                  <Match match={props.list.match} />
                 ) : (
                   ""
                 )}
@@ -85,8 +90,8 @@ function ListCardPreview(props) {
           <Link to={`/list/${props.list.id}`} className="text-decoration-none">
             <i className="bi bi-card-list"></i> Details
           </Link>
-          <i className="bi bi-plus-square"></i>
-          Save List
+          <i className="bi bi-plus-square text-danger"></i>
+          <p className="m-0 p-0 text-danger">Save List</p>
         </Card.Footer>
       </Card>
     </div>

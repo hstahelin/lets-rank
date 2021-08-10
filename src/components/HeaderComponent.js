@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { GENRES } from "../shared/genres";
 
-function Header() {
+function Header(props) {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
 
@@ -24,6 +24,16 @@ function Header() {
     console.log(JSON.stringify(data));
     toggleModal();
   };
+
+  function handleSearchSubmit(event) {
+    // alert("Form Submit");
+    props.onSubmit(event);
+    event.preventDefault();
+  }
+
+  function handleSearchChange(event) {
+    props.onChange(event);
+  }
 
   return (
     <Navbar
@@ -38,7 +48,7 @@ function Header() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="p-3">
-          <Form className="d-flex mt-3 ms-auto">
+          <Form className="d-flex mt-3 ms-auto" onSubmit={handleSearchSubmit}>
             <InputGroup>
               <InputGroup.Text className="searchBar">
                 <i className="bi bi-search"></i>
@@ -47,27 +57,47 @@ function Header() {
                 type="search"
                 placeholder="Search"
                 className="searchBar"
+                value={props.searchText}
+                onChange={handleSearchChange}
               />
             </InputGroup>
           </Form>
           <Nav className="ms-auto mt-3">
-            <Nav.Link as={Link} to="/home" className="mx-2">
+            <Nav.Link as={Link} to="/home" className="mx-2 my-auto">
               <i className="bi bi-house"></i> Home
             </Nav.Link>
             {/* <Link to="/" className="nav-link">
               <i className="bi bi-house"></i> Home2
             </Link> */}
-            <Nav.Link as={Link} to="/myLists/Let's Rank" className="mx-2">
+            <Nav.Link
+              as={Link}
+              to="/myLists/Let's Rank"
+              className="mx-2 my-auto"
+            >
               <i className="bi bi-list-ul"></i> My Lists
             </Nav.Link>
-            <Nav.Link className="mx-2" onClick={toggleModal}>
+            <Nav.Link className="mx-2 my-auto" onClick={toggleModal}>
               <i className="bi bi-plus"></i> Create List
             </Nav.Link>
-            <Nav.Link as={Link} to="/login" className="mx-2">
+            <Nav.Link as={Link} to="/login" className="mx-2 my-auto">
               <i className="bi bi-box-arrow-in-left"></i> Login/SignUp
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" className="text-warning mx-2 small">
+            <Nav.Link
+              as={Link}
+              to="/about"
+              className="text-warning mx-2 my-auto small"
+            >
               <i className="bi bi-question-circle"></i> How it works
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/user/Let's Rank"
+              className="text-info mx-2 my-auto large"
+            >
+              <h2 className="my-auto">
+                <i className="bi bi-person-badge mb-0"></i>
+              </h2>
+              {/* <p className="small mb-0">Let's Rank</p> */}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
