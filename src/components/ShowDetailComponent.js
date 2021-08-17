@@ -1,10 +1,16 @@
-import { Badge } from "react-bootstrap";
+import { Badge, Form, InputGroup, Button } from "react-bootstrap";
 import React from "react";
 import { SHOWS } from "../shared/shows";
-import { LISTS } from "../shared/lists";
+// import { LISTS } from "../shared/lists";
+import { useSelector } from "react-redux";
+
 import { Link, useHistory } from "react-router-dom";
 
 function ShowDetail(props) {
+  const lists = useSelector((state) => state.lists);
+  const myLists = lists.lists.filter((list) => list.user === "Let's Rank");
+  console.log(myLists);
+
   const show = SHOWS.filter((elem) => elem.id === props.showId)[0];
   const history = useHistory();
   return (
@@ -79,7 +85,10 @@ function ShowDetail(props) {
                 <p>
                   <strong>Included in: </strong>
                   <Badge bg="primary">
-                    {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
+                    {
+                      lists.lists.filter((list) => list.list.includes(show.id))
+                        .length
+                    }{" "}
                     Public Lists
                   </Badge>{" "}
                   {/* <Badge bg="primary">
@@ -91,39 +100,31 @@ function ShowDetail(props) {
             </div>
             <div className="row">
               <div className="col-12 col-md-10 col-lg-8">
-                <form action="">
-                  <div className="input-group">
-                    <span
-                      className="input-group-text searchBar bi bi-plus-square"
-                      id="basic-addon1"
-                    ></span>
-                    <select
-                      className="form-select"
-                      id="floatingSelect"
-                      name="listOption"
-                      defaultValue="-1"
-                    >
-                      <option value="-1">Select List</option>
-                      <option value="1" disabled>
-                        Top 10 Action
-                      </option>
-                      <option value="2">Top 10 Kids</option>
-                      <option value="3">Best Science-Fiction</option>
-                      <option value="4">Top 10 Horror</option>
-                      <option value="5">All Time Best</option>
-                    </select>
-                    <button type="submit" className="btn btn-danger" disabled>
-                      Add to List
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger ms-1"
-                      disabled
-                    >
-                      Create List
-                    </button>
-                  </div>
-                </form>
+                <Form>
+                  <Form.Group>
+                    <InputGroup className="mb-3">
+                      <InputGroup.Text id="addToList">
+                        <i className="bi bi-plus-square"></i>
+                      </InputGroup.Text>
+                      <Form.Select>
+                        <option value="-1">Select List</option>
+                        {myLists.map((list) => (
+                          <option
+                            key={list.id}
+                            value={list.id}
+                            disabled={list.list.includes(show.id)}
+                          >
+                            {list.name}
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <Button variant="primary">Add to List</Button>
+                      <Button variant="success" className="ms-1">
+                        Create List
+                      </Button>
+                    </InputGroup>
+                  </Form.Group>
+                </Form>
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ function Match(props) {
       <div className="rank text-end mt-2 pe-2">
         Match :{" "}
         {[...Array(full)].map((star, i) => (
-          <i className="bi bi-star-fill" key={i}></i>
+          <i className="bi bi-star-fill rank" key={i}></i>
         ))}
         {half === 1 ? <i className="bi bi-star-half"></i> : ""}
       </div>

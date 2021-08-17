@@ -1,6 +1,5 @@
 import React from "react";
 import ListCardPreview from "./ListCardPreviewComponent";
-import { LISTS } from "../shared/lists";
 import ShowPreview from "./ShowPreviewComponent";
 import HelpAlert from "./HelpAlertComponent";
 
@@ -8,17 +7,17 @@ function Home(props) {
   return (
     <div>
       <div className="container mt-4">
-        <HelpAlert />
+        <HelpAlert source="home" />
         <div className="row featured mb-3">
           <div className="col">
             <h1 className="pageTitle">Featured Lists</h1>
           </div>
         </div>
         <div className="row">
-          <ListCardPreview list={LISTS[8]} source="home" />
-          <ListCardPreview list={LISTS[1]} source="home" />
-          <ListCardPreview list={LISTS[7]} source="home" />
-          <ListCardPreview list={LISTS[9]} source="home" />
+          <ListCardPreview list={0} source="home" />
+          <ListCardPreview list={1} source="home" />
+          <ListCardPreview list={7} source="home" />
+          <ListCardPreview list={9} source="home" />
         </div>
       </div>
       <hr />

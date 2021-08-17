@@ -58,6 +58,10 @@
   color: #2C7DA0;
 }
 
+.rank-full {
+  color: #90be6d;
+}
+
 .imgList {
   /* border: 1px solid green; */
   object-fit: cover;

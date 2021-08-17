@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "react-bootstrap";
 import { SHOWS } from "../shared/shows";
-import { LISTS } from "../shared/lists";
+//import { LISTS } from "../shared/lists";
+import { useSelector } from "react-redux";
 
 function ListDetail(props) {
-  const currentList = LISTS.filter(
+  const lists = useSelector((state) => state.lists);
+  const currentList = lists.lists.filter(
     (list) => list.id === Number(props.listId)
   )[0];
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));

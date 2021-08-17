@@ -1,23 +1,29 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { LISTS } from "../shared/lists";
+// import { LISTS } from "../shared/lists";
+import { useSelector } from "react-redux";
+
 import ListCardPreview from "./ListCardPreviewComponent";
 
 function Recommendation(props) {
+  const lists = useSelector((state) => state.lists);
+
   const history = useHistory();
 
-  const currentList = LISTS.filter(
+  const currentList = lists.lists.filter(
     (list) => list.id === Number(props.listId)
   )[0];
 
   function getRecommendations(list) {
-    const filteredList = LISTS.filter((e) => e.id !== list.id).map((elem) => ({
-      ...elem,
-      match: elem.list.reduce(
-        (acc, curr) => acc + (list.list.includes(curr) ? 1 : 0),
-        0
-      ),
-    }));
+    const filteredList = lists.lists
+      .filter((e) => e.id !== list.id)
+      .map((elem) => ({
+        ...elem,
+        match: elem.list.reduce(
+          (acc, curr) => acc + (list.list.includes(curr) ? 1 : 0),
+          0
+        ),
+      }));
 
     return filteredList.sort((a, b) => b.match - a.match).slice(0, 8);
   }
@@ -33,10 +39,14 @@ function Recommendation(props) {
           </h1>
           <h6>for {currentList.name}</h6>
         </div>
-        <div className="col-1">
+        <div className="col-2 col-md-1 text-truncate">
           <h3>
-            <Link to="" onClick={() => history.goBack()}>
-              <i className="bi bi-backspace"></i>
+            <Link
+              to=""
+              onClick={() => history.goBack()}
+              className="text-decoration-none"
+            >
+              <i className="bi bi-backspace"></i> <h6>back</h6>
             </Link>
           </h3>
         </div>
@@ -44,7 +54,12 @@ function Recommendation(props) {
       <div className="row">
         {/* <!-- Recommended List - Best for Kids-->; */}
         {recommendList.map((list) => (
-          <ListCardPreview key={list.id} list={list} source="recommendation" />
+          <ListCardPreview
+            key={list.id}
+            list={list.id}
+            match={5 * (list.match / currentList.list.length)}
+            source="recommendation"
+          />
         ))}
       </div>
     </div>

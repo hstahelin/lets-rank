@@ -1,23 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { Button, Offcanvas, ListGroup, Badge } from "react-bootstrap";
 import { SHOWS } from "../shared/shows";
-import { LISTS } from "../shared/lists";
+//import { LISTS } from "../shared/lists";
+import { useSelector } from "react-redux";
+import HelpAlert from "./HelpAlertComponent";
 
 function MyLists(props) {
-  const myLists = LISTS.filter((list) => list.user === props.username);
+  const history = useHistory();
+
+  let location = useLocation();
+  const save = new URLSearchParams(location.search).get("save");
+  // console.log(location.search);
+  // console.log("Save:" + save);
+  const lists = useSelector((state) => state.lists);
+
+  const myLists = lists.lists.filter((list) => list.user === props.username);
   const [showLists, setShowLists] = useState(false);
 
   const handleClose = () => setShowLists(false);
   const handleShow = () => setShowLists(true);
 
   const listId = props.listId ? props.listId : 0;
-  const currentList = LISTS.filter((list) => list.id === Number(listId))[0];
+  const currentList = lists.lists.filter(
+    (list) => list.id === Number(listId)
+  )[0];
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
 
   return (
     <React.Fragment>
       <div className="container mt-4">
+        {save === "success" && <HelpAlert source="saveList" />}
         <div className="row featured mb-3">
           <div className="col">
             <h1>
@@ -25,10 +38,21 @@ function MyLists(props) {
                 <i className="bi bi-list-stars"></i>
               </Button>{" "}
               My Lists{" "}
-              <Badge pill bg="primary">
+              {/* <Badge pill bg="primary">
                 {myLists.length}
-              </Badge>
+              </Badge> */}
             </h1>
+          </div>
+          <div className="col-2 col-md-1 text-truncate">
+            <h3>
+              <Link
+                to=""
+                onClick={() => history.goBack()}
+                className="text-decoration-none"
+              >
+                <i className="bi bi-backspace"></i> <h6>back</h6>
+              </Link>
+            </h3>
           </div>
         </div>
         <div className="row">
@@ -36,9 +60,9 @@ function MyLists(props) {
             <div className="me-auto align-self-center">
               <h3>
                 {currentList.name}{" "}
-                <Badge pill bg="primary">
+                {/* <Badge pill bg="primary">
                   {currentList.list.length}
-                </Badge>
+                </Badge> */}
               </h3>
             </div>
             <div className="align-self-center">

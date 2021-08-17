@@ -40,7 +40,7 @@ function UserWithId({ match }) {
 
 function Main() {
   const [searchText, setSearchText] = useState("");
-  let searchBoxText = "girl";
+  let searchBoxText = "";
 
   function handleChange(event) {
     setSearchText(event.target.value);
@@ -57,6 +57,7 @@ function Main() {
     searchBoxText = searchText;
     return <Searchresults searchText={searchBoxText} />;
   }
+
   return (
     <div>
       <Router history={history}>
