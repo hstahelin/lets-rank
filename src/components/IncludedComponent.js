@@ -25,7 +25,7 @@ function Included(props) {
           <h3>
             <Link
               to="#"
-              //   onClick={() => history.goBack()}
+              onClick={() => history.goBack()}
               className="text-decoration-none"
             >
               <i className="bi bi-backspace"></i> <h6>back</h6>
