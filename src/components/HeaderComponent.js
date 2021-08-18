@@ -9,21 +9,34 @@ import {
   Modal,
   Button,
   FloatingLabel,
-  Accordion,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { GENRES } from "../shared/genres";
+// import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addList } from "../redux/ActionCreators";
+
+// import { GENRES } from "../shared/genres";
 
 function Header(props) {
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data));
+  const [listName, setListName] = useState("");
+
+  function handleSubmit(event) {
+    const newList = {
+      name: listName,
+      user: "Let's Rank",
+      list: [],
+    };
+    // console.log(newList);
+    dispatch(addList(newList));
+    setListName("");
+    event.preventDefault();
     toggleModal();
-  };
+  }
 
   function handleSearchSubmit(event) {
     // alert("Form Submit");
@@ -105,10 +118,10 @@ function Header(props) {
       {/* Create List - Modal */}
       <Modal show={showModal} onHide={toggleModal}>
         <Modal.Header closeButton closeVariant="white">
-          <Modal.Title className="text-light">New List</Modal.Title>
+          <Modal.Title className="text-light">Quick list creation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group>
               <FloatingLabel
                 controlId="ListName"
@@ -119,11 +132,12 @@ function Header(props) {
                   type="text"
                   name="listName"
                   placeholder="List Name"
-                  {...register("listName")}
+                  value={listName}
+                  onChange={(e) => setListName(e.target.value)}
                 />
               </FloatingLabel>
             </Form.Group>
-            <Form.Group>
+            {/* <Form.Group>
               <FloatingLabel
                 controlId="Description"
                 label="Description"
@@ -136,8 +150,8 @@ function Header(props) {
                   {...register("description")}
                 />
               </FloatingLabel>
-            </Form.Group>
-            <Form.Group>
+            </Form.Group> */}
+            {/* <Form.Group>
               <Accordion flush>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Genres</Accordion.Header>
@@ -155,7 +169,7 @@ function Header(props) {
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-            </Form.Group>
+            </Form.Group> */}
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -164,9 +178,9 @@ function Header(props) {
           </Button>
           <Button
             variant="danger"
-            onClick={handleSubmit(onSubmit)}
+            onClick={handleSubmit}
             type="submit"
-            disabled="true"
+            // disabled="true"
           >
             Create
           </Button>

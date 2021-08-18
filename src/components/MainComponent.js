@@ -11,6 +11,8 @@ import Recommendation from "./RecommendationsComponent";
 import Searchresults from "./SearchResultsComponent";
 import history from "../history";
 import UserInfo from "./UserInfoComponent";
+import Login from "./LoginComponent";
+import Included from "./IncludedComponent";
 
 function ShowDetailWithId({ match }) {
   return <ShowDetail showId={+match.params.showId} />;
@@ -58,6 +60,10 @@ function Main() {
     return <Searchresults searchText={searchBoxText} />;
   }
 
+  function IncludedWithId({ match }) {
+    return <Included showId={match.params.showId} />;
+  }
+
   return (
     <div>
       <Router history={history}>
@@ -82,6 +88,9 @@ function Main() {
             component={RecommendationWithId}
           />
           <Route path="/user/:username" component={UserWithId} />
+          <Route path="/login" component={Login} />
+          <Route path="/included/:showId" component={IncludedWithId} />
+
           <Redirect to="/home" />
         </Switch>
         <Footer />

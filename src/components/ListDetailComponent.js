@@ -1,16 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Badge } from "react-bootstrap";
+// import { Badge } from "react-bootstrap";
 import { SHOWS } from "../shared/shows";
-//import { LISTS } from "../shared/lists";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addList } from "../redux/ActionCreators";
+
+import history from "../history";
 
 function ListDetail(props) {
+  const dispatch = useDispatch();
+
   const lists = useSelector((state) => state.lists);
   const currentList = lists.lists.filter(
     (list) => list.id === Number(props.listId)
   )[0];
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+
+  function saveList(list) {
+    const newList = { ...list, user: "Let's Rank" };
+    const newObject = dispatch(addList(newList));
+    history.push(`/myLists/Let's Rank/${newObject.payload.id}?save=success`);
+  }
+
   return (
     <div className="container mt-4">
       <div className="row featured mb-3">
@@ -18,17 +29,32 @@ function ListDetail(props) {
           <div className="me-auto align-self-center">
             <h1>
               {currentList.name}{" "}
-              <Badge pill bg="primary">
+              {/* <Badge pill bg="primary">
                 {currentList.list.length}
-              </Badge>
+              </Badge> */}
             </h1>
             <h6>by {currentList.user}</h6>
           </div>
           <div className="align-self-center">
-            <button className="btn btn-danger" disabled>
+            <button
+              className="btn btn-primary"
+              disabled={currentList.user === "Let's Rank" ? true : false}
+              onClick={() => saveList(currentList)}
+            >
               <i className="bi bi-plus-square"></i> Save List
             </button>
           </div>
+        </div>
+        <div className="col-2 col-md-1 text-truncate">
+          <h3>
+            <Link
+              to=""
+              onClick={() => history.goBack()}
+              className="text-decoration-none"
+            >
+              <i className="bi bi-backspace"></i> <h6>back</h6>
+            </Link>
+          </h3>
         </div>
       </div>
       <div className="row">

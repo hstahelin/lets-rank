@@ -17,8 +17,30 @@ function HelpAlert(props) {
   if (showAlert && props.source === "saveList") {
     return (
       <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-        <h4>SUCCESS!</h4>
-        <p>Thg list has been saved.</p>
+        <h4>
+          <i className="bi bi-check-circle"></i> SUCCESS!
+        </h4>
+        <p>Your list has been saved.</p>
+      </Alert>
+    );
+  }
+  if (showAlert && props.source === "addShow") {
+    return (
+      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+        <h4>
+          <i className="bi bi-check-circle"></i> SUCCESS!
+        </h4>
+        <p>Your show has been added.</p>
+      </Alert>
+    );
+  }
+  if (showAlert && props.source === "deleteList") {
+    return (
+      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+        <h4>
+          <i className="bi bi-check-circle"></i> SUCCESS!
+        </h4>
+        <p>Your list has been deleted.</p>
       </Alert>
     );
   }

@@ -183,7 +183,7 @@ export const LISTS = [
     id: 30,
     name: "Awesome Adventure",
     user: "Let's Rank",
-    list: [89, 82, 49, 90, 43, 100, 16, 36, 67],
+    list: [89, 82, 49, 90, 43, 100, 16, 37, 67],
   },
   {
     id: 31,
@@ -225,7 +225,7 @@ export const LISTS = [
     id: 37,
     name: "Unrivaled Horror",
     user: "Let's Rank",
-    list: [85, 14, 11, 95, 51, 9, 93],
+    list: [84, 14, 11, 95, 51, 9, 93],
   },
   {
     id: 38,

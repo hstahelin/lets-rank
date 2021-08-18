@@ -14,7 +14,7 @@ function Home(props) {
           </div>
         </div>
         <div className="row">
-          <ListCardPreview list={0} source="home" />
+          <ListCardPreview list={2} source="home" />
           <ListCardPreview list={1} source="home" />
           <ListCardPreview list={7} source="home" />
           <ListCardPreview list={9} source="home" />

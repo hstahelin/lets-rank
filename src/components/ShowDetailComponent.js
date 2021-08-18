@@ -1,18 +1,35 @@
 import { Badge, Form, InputGroup, Button } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import { SHOWS } from "../shared/shows";
 // import { LISTS } from "../shared/lists";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Link, useHistory } from "react-router-dom";
+import { addShowList } from "../redux/ActionCreators";
 
 function ShowDetail(props) {
+  const dispatch = useDispatch();
+
   const lists = useSelector((state) => state.lists);
   const myLists = lists.lists.filter((list) => list.user === "Let's Rank");
-  console.log(myLists);
+  //console.log(myLists);
 
   const show = SHOWS.filter((elem) => elem.id === props.showId)[0];
   const history = useHistory();
+
+  const [selectList, setSelectList] = useState(-1);
+
+  function addToList(showId) {
+    // console.log("Show Id: " + showId);
+    // console.log("List Id: " + selectList);
+    dispatch(addShowList(selectList, showId));
+    history.push(`/myLists/Let's Rank/${selectList}?save=show`);
+  }
+
+  function handleSelectList(e) {
+    // console.log("Option: " + e.target.value);
+    setSelectList(e.target.value);
+  }
   return (
     <div className="container mt-4">
       <div className="row mb-3">
@@ -29,10 +46,14 @@ function ShowDetail(props) {
               <div className="col-11">
                 <h1 className="">{show.name}</h1>
               </div>
-              <div className="col-1">
-                <h3 className="">
-                  <Link to="" onClick={() => history.goBack()}>
-                    <i className="bi bi-backspace"></i>
+              <div className="col-2 col-md-1 text-truncate">
+                <h3>
+                  <Link
+                    to=""
+                    onClick={() => history.goBack()}
+                    className="text-decoration-none"
+                  >
+                    <i className="bi bi-backspace"></i> <h6>back</h6>
                   </Link>
                 </h3>
               </div>
@@ -84,13 +105,16 @@ function ShowDetail(props) {
                 </p>
                 <p>
                   <strong>Included in: </strong>
-                  <Badge bg="primary">
-                    {
-                      lists.lists.filter((list) => list.list.includes(show.id))
-                        .length
-                    }{" "}
-                    Public Lists
-                  </Badge>{" "}
+                  <Link to={`/included/${show.id}`}>
+                    <Badge bg="primary">
+                      {
+                        lists.lists.filter((list) =>
+                          list.list.includes(show.id)
+                        ).length
+                      }{" "}
+                      Lists
+                    </Badge>{" "}
+                  </Link>
                   {/* <Badge bg="primary">
                     {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
                     Own Lists
@@ -106,7 +130,10 @@ function ShowDetail(props) {
                       <InputGroup.Text id="addToList">
                         <i className="bi bi-plus-square"></i>
                       </InputGroup.Text>
-                      <Form.Select>
+                      <Form.Select
+                        defaultValue={selectList}
+                        onChange={(e) => handleSelectList(e)}
+                      >
                         <option value="-1">Select List</option>
                         {myLists.map((list) => (
                           <option
@@ -118,10 +145,15 @@ function ShowDetail(props) {
                           </option>
                         ))}
                       </Form.Select>
-                      <Button variant="primary">Add to List</Button>
-                      <Button variant="success" className="ms-1">
-                        Create List
+                      <Button
+                        variant="primary"
+                        onClick={(e) => addToList(show.id)}
+                      >
+                        Add to List
                       </Button>
+                      {/* <Button variant="success" className="ms-1">
+                        Create List
+                      </Button> */}
                     </InputGroup>
                   </Form.Group>
                 </Form>

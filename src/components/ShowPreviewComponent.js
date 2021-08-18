@@ -37,8 +37,8 @@ function ShowPreview(props) {
           >
             <i className="bi bi-card-list"></i> Details
           </Link>
-          <i className="bi bi-plus-square text-danger"></i>
-          <p className="m-0 p-0 text-danger">Add to list</p>
+          {/* <i className="bi bi-plus-square text-danger"></i>
+          <p className="m-0 p-0 text-danger">Add to list</p> */}
         </div>
       </div>
     </div>

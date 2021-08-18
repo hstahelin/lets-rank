@@ -1,30 +1,31 @@
 import React from "react";
-// import { LISTS } from "../shared/lists";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-import history from "../history";
+import { SHOWS } from "../shared/shows";
 
 import ListCardPreview from "./ListCardPreviewComponent";
+import { map } from "bluebird";
 
-function UserInfo(props) {
+function Included(props) {
   const lists = useSelector((state) => state.lists);
+  const history = useHistory();
+  const show = SHOWS.filter((elem) => elem.id === +props.showId)[0];
+  const includedLists = lists.lists.filter((list) =>
+    list.list.includes(show.id)
+  );
 
-  const userLists = lists.lists.filter((list) => list.user === props.username);
   return (
     <div className="container mt-4">
       <div className="row featured mb-3">
         <div className="col">
-          <h1>
-            <i className="bi bi-person-badge"></i>
-            {props.username} Lists
-          </h1>
+          <h1>{show.name} included in</h1>
         </div>
         <div className="col-2 col-md-1 text-truncate">
           <h3>
             <Link
-              to=""
-              onClick={() => history.goBack()}
+              to="#"
+              //   onClick={() => history.goBack()}
               className="text-decoration-none"
             >
               <i className="bi bi-backspace"></i> <h6>back</h6>
@@ -33,7 +34,7 @@ function UserInfo(props) {
         </div>
       </div>
       <div className="row">
-        {userLists.map((list) => (
+        {includedLists.map((list) => (
           <ListCardPreview key={list.id} list={list.id} />
         ))}
       </div>
@@ -41,4 +42,4 @@ function UserInfo(props) {
   );
 }
 
-export default UserInfo;
+export default Included;

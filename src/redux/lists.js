@@ -12,6 +12,31 @@ export function Lists(state = { lists: LISTS }, action) {
       return {
         lists: state.lists.filter((list) => list.id !== action.payload),
       };
+    case ActionTypes.ADD_SHOW_LIST:
+      // console.log(action.payload);
+      const addList = state.lists.filter(
+        (list) => list.id === +action.payload.listId
+      )[0];
+      addList.list.push(action.payload.showId);
+      // console.log(state);
+      return {
+        ...state,
+        lists: state.lists.map((list) =>
+          list.id === addList.id ? addList : list
+        ),
+      };
+    case ActionTypes.REMOVE_SHOW_LIST:
+      const removeList = state.lists.filter(
+        (list) => list.id === +action.payload.listId
+      )[0];
+      const index = removeList.list.indexOf(action.payload.showId);
+      removeList.list.splice(index, 1);
+      return {
+        ...state,
+        lists: state.lists.map((list) =>
+          list.id === removeList.id ? removeList : list
+        ),
+      };
     default:
       return state;
   }
