@@ -14,8 +14,6 @@ function MyLists(props) {
 
   let location = useLocation();
   const save = new URLSearchParams(location.search).get("save");
-  // console.log(location.search);
-  // console.log("Save:" + save);
   const lists = useSelector((state) => state.lists);
 
   const myLists = lists.lists.filter((list) => list.user === props.username);
@@ -31,12 +29,10 @@ function MyLists(props) {
     const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
 
     function removeShow(listId, showId) {
-      console.log("Show Id: " + showId + " List Id: " + listId);
       dispatch(removeShowList(listId, showId));
     }
 
     function deleteList(listId) {
-      // console.log(listId);
       dispatch(removeList(listId));
       history.push(`/myLists/Let's Rank/?save=delete`);
     }

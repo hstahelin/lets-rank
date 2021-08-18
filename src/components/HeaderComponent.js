@@ -31,7 +31,6 @@ function Header(props) {
       user: "Let's Rank",
       list: [],
     };
-    // console.log(newList);
     dispatch(addList(newList));
     setListName("");
     event.preventDefault();
@@ -39,7 +38,6 @@ function Header(props) {
   }
 
   function handleSearchSubmit(event) {
-    // alert("Form Submit");
     props.onSubmit(event);
     event.preventDefault();
   }

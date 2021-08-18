@@ -12,7 +12,6 @@ function ShowDetail(props) {
 
   const lists = useSelector((state) => state.lists);
   const myLists = lists.lists.filter((list) => list.user === "Let's Rank");
-  //console.log(myLists);
 
   const show = SHOWS.filter((elem) => elem.id === props.showId)[0];
   const history = useHistory();
@@ -20,14 +19,11 @@ function ShowDetail(props) {
   const [selectList, setSelectList] = useState(-1);
 
   function addToList(showId) {
-    // console.log("Show Id: " + showId);
-    // console.log("List Id: " + selectList);
     dispatch(addShowList(selectList, showId));
     history.push(`/myLists/Let's Rank/${selectList}?save=show`);
   }
 
   function handleSelectList(e) {
-    // console.log("Option: " + e.target.value);
     setSelectList(e.target.value);
   }
   return (

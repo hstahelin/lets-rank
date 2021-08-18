@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { SHOWS } from "../shared/shows";
 
 import ListCardPreview from "./ListCardPreviewComponent";
-import { map } from "bluebird";
 
 function Included(props) {
   const lists = useSelector((state) => state.lists);
@@ -24,7 +23,7 @@ function Included(props) {
         <div className="col-2 col-md-1 text-truncate">
           <h3>
             <Link
-              to="#"
+              to=""
               onClick={() => history.goBack()}
               className="text-decoration-none"
             >

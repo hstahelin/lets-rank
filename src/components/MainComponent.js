@@ -49,8 +49,6 @@ function Main() {
   }
 
   function handleSubmit(event) {
-    console.log(searchText);
-
     history.push("/search");
     event.preventDefault();
   }

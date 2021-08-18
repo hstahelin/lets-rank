@@ -13,12 +13,10 @@ export function Lists(state = { lists: LISTS }, action) {
         lists: state.lists.filter((list) => list.id !== action.payload),
       };
     case ActionTypes.ADD_SHOW_LIST:
-      // console.log(action.payload);
       const addList = state.lists.filter(
         (list) => list.id === +action.payload.listId
       )[0];
       addList.list.push(action.payload.showId);
-      // console.log(state);
       return {
         ...state,
         lists: state.lists.map((list) =>

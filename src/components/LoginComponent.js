@@ -45,14 +45,18 @@ function Login() {
                   </button>
                 </div>
                 <div className="mb-4">
-                  <a href="#">
+                  <Link to="#" className="text-decoration-none">
                     <small>Forgot Your Password?</small>
-                  </a>
+                  </Link>
                 </div>
                 <hr />
 
                 <div className="text-center">
-                  <Link to="#" onClick={() => setLogin(!login)}>
+                  <Link
+                    to="#"
+                    onClick={() => setLogin(!login)}
+                    className="text-decoration-none"
+                  >
                     Don't have an account? SignUp here
                   </Link>
                 </div>
@@ -135,7 +139,11 @@ function Login() {
                   </div>
                   <hr />
                   <div className="text-center">
-                    <Link to="#" onClick={() => setLogin(!login)}>
+                    <Link
+                      to="#"
+                      onClick={() => setLogin(!login)}
+                      className="text-decoration-none"
+                    >
                       Already have an account? Login here
                     </Link>
                   </div>
