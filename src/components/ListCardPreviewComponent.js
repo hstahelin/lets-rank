@@ -111,15 +111,17 @@ function ListCardPreview(props) {
               </div>
             </div>
           </Card.Body>
-          <Card.Footer className="d-flex justify-content-evenly">
+          <Card.Footer className="d-flex justify-content-evenly px-0">
             <Button
               as={Link}
               to={`/list/${displayList.id}`}
               className="text-decoration-none"
+              size="sm"
             >
               <i className="bi bi-card-list"></i> Details
             </Button>
             <Button
+              size="sm"
               onClick={() => saveList(displayList)}
               disabled={displayList.user === "Let's Rank" ? true : false}
             >

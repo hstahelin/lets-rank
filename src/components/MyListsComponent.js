@@ -17,9 +17,9 @@ function MyLists(props) {
   const lists = useSelector((state) => state.lists);
 
   const myLists = lists.lists.filter((list) => list.user === props.username);
-  const [showLists, setShowLists] = useState(false);
+  const [showLists, setShowLists] = useState(props.listId ? false : true);
 
-  const handleClose = () => setShowLists(false);
+  const handleClose = () => setShowLists(!showLists);
   const handleShow = () => setShowLists(true);
   if (myLists.length > 0) {
     const listId = props.listId ? props.listId : myLists[0].id;
@@ -58,7 +58,7 @@ function MyLists(props) {
               </Badge> */}
               </h1>
             </div>
-            <div className="col-2 col-md-1 text-truncate">
+            <div className="col-2 text-truncate text-end">
               <h3>
                 <Link
                   to=""

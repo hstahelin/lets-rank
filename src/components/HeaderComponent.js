@@ -10,7 +10,7 @@ import {
   Button,
   FloatingLabel,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addList } from "../redux/ActionCreators";
@@ -18,6 +18,8 @@ import { addList } from "../redux/ActionCreators";
 // import { GENRES } from "../shared/genres";
 
 function Header(props) {
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
@@ -31,10 +33,12 @@ function Header(props) {
       user: "Let's Rank",
       list: [],
     };
-    dispatch(addList(newList));
+    const createdList = dispatch(addList(newList));
+    // console.log(createdList.payload.id);
     setListName("");
     event.preventDefault();
     toggleModal();
+    history.push(`/myLists/Let's Rank/${createdList.payload.id}`);
   }
 
   function handleSearchSubmit(event) {

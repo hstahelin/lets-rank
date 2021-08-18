@@ -39,10 +39,10 @@ function ShowDetail(props) {
         <div className="col">
           <div className="container">
             <div className="row featured">
-              <div className="col-11">
+              <div className="col">
                 <h1 className="">{show.name}</h1>
               </div>
-              <div className="col-2 col-md-1 text-truncate">
+              <div className="col-2 text-truncate text-end">
                 <h3>
                   <Link
                     to=""

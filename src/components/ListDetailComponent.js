@@ -45,7 +45,7 @@ function ListDetail(props) {
             </button>
           </div>
         </div>
-        <div className="col-2 col-md-1 text-truncate">
+        <div className="col-2 text-truncate text-end">
           <h3>
             <Link
               to=""

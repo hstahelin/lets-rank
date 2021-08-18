@@ -88,7 +88,7 @@ function Main() {
           <Route path="/user/:username" component={UserWithId} />
           <Route path="/login" component={Login} />
           <Route path="/included/:showId" component={IncludedWithId} />
-
+          <Route path="/" component={Home} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
