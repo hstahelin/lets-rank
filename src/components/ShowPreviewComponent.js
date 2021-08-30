@@ -15,7 +15,11 @@ function ShowPreview(props) {
             <div className="col m-0 p-0">
               <Link to={`/show/${show.id}`}>
                 <img
-                  src={show.image ? show.image.medium : ""}
+                  src={
+                    show.image
+                      ? show.image.medium
+                      : "https://picsum.photos/id/0/210/295?grayscale"
+                  }
                   className="d-block w-100"
                   alt="..."
                 />

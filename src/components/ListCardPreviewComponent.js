@@ -41,7 +41,11 @@ function ListCardPreview(props) {
                 {showList.length > 0 && (
                   <Link to={`/show/${showList[0].id}`}>
                     <img
-                      src={showList[0].image.medium}
+                      src={
+                        showList[0].image
+                          ? showList[0].image.medium
+                          : "https://picsum.photos/id/0/210/295?grayscale"
+                      }
                       className="d-block w-100"
                       alt="..."
                     />
@@ -51,7 +55,11 @@ function ListCardPreview(props) {
                 {showList.length > 2 && (
                   <Link to={`/show/${showList[2].id}`}>
                     <img
-                      src={showList[2].image.medium}
+                      src={
+                        showList[2].image
+                          ? showList[2].image.medium
+                          : "https://picsum.photos/id/0/210/295?grayscale"
+                      }
                       className="d-block w-100"
                       alt="..."
                     />
@@ -62,7 +70,11 @@ function ListCardPreview(props) {
                 {showList.length > 1 && (
                   <Link to={`/show/${showList[1].id}`}>
                     <img
-                      src={showList[1].image.medium}
+                      src={
+                        showList[1].image
+                          ? showList[1].image.medium
+                          : "https://picsum.photos/id/0/210/295?grayscale"
+                      }
                       className="d-block w-100"
                       alt="...."
                     />
@@ -72,7 +84,11 @@ function ListCardPreview(props) {
                 {showList.length > 3 && (
                   <Link to={`/show/${showList[3].id}`}>
                     <img
-                      src={showList[3].image.medium}
+                      src={
+                        showList[3].image
+                          ? showList[3].image.medium
+                          : "https://picsum.photos/id/0/210/295?grayscale"
+                      }
                       className="d-block w-100"
                       alt="..."
                     />

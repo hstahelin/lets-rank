@@ -31,7 +31,11 @@ function ShowDetail(props) {
       <div className="row mb-3">
         <div className="col-12 col-md-4 mb-3">
           <img
-            src={show.image.original}
+            src={
+              show.image
+                ? show.image.original
+                : "https://picsum.photos/id/0/800/1200?grayscale"
+            }
             className="img-thumbnail shadow"
             alt="..."
           />
