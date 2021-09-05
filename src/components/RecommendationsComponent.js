@@ -57,7 +57,7 @@ function Recommendation(props) {
           <ListCardPreview
             key={list.id}
             list={list.id}
-            match={5 * (list.match / currentList.list.length)}
+            match={5 * (list.match / list.list.length)}
             source="recommendation"
           />
         ))}

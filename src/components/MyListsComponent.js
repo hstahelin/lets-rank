@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { Button, Offcanvas, ListGroup, Badge } from "react-bootstrap";
 import { SHOWS } from "../shared/shows";
-//import { LISTS } from "../shared/lists";
+// import { USERS } from "../shared/users";
+
 import { useSelector, useDispatch } from "react-redux";
 import HelpAlert from "./HelpAlertComponent";
 import { removeList, removeShowList } from "../redux/ActionCreators";
@@ -10,13 +11,16 @@ import { removeList, removeShowList } from "../redux/ActionCreators";
 function MyLists(props) {
   const history = useHistory();
 
+  const userLogged = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   let location = useLocation();
   const save = new URLSearchParams(location.search).get("save");
   const lists = useSelector((state) => state.lists);
 
-  const myLists = lists.lists.filter((list) => list.user === props.username);
+  const myLists = lists.lists.filter((list) => list.userId === +props.userId);
+
   const [showLists, setShowLists] = useState(props.listId ? false : true);
 
   const handleClose = () => setShowLists(!showLists);
@@ -34,14 +38,13 @@ function MyLists(props) {
 
     function deleteList(listId) {
       dispatch(removeList(listId));
-      history.push(`/myLists/Let's Rank/?save=delete`);
+      history.push(`/myLists/${userLogged.id}/?save=delete`);
     }
     return (
       <React.Fragment>
         <div className="container mt-4">
           {save === "success" && <HelpAlert source="saveList" />}
           {save === "show" && <HelpAlert source="addShow" />}
-          {save === "delete" && <HelpAlert source="deleteList" />}
           <div className="row featured mb-3">
             <div className="col">
               <h1>
@@ -74,7 +77,7 @@ function MyLists(props) {
             <div className="col featured mb-3 d-flex">
               <div className="me-auto align-self-center">
                 <h3>
-                  {currentList.name}{" "}
+                  {currentList.name}
                   {/* <Badge pill bg="primary">
                   {currentList.list.length}
                 </Badge> */}
@@ -149,6 +152,7 @@ function MyLists(props) {
             {/* render */}
           </div>
           <Offcanvas show={showLists} onHide={handleClose}>
+            {save === "delete" && <HelpAlert source="deleteList" />}
             <Offcanvas.Header
               closeButton
               className="modal-header text-light"
@@ -162,7 +166,7 @@ function MyLists(props) {
                   <Link
                     key={list.id}
                     onClick={handleClose}
-                    to={`/myLists/${props.username}/${list.id}`}
+                    to={`/myLists/${props.userId}/${list.id}`}
                     className="text-decoration-none"
                   >
                     <ListGroup.Item

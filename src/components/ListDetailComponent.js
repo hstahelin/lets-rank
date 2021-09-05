@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import { Badge } from "react-bootstrap";
 import { SHOWS } from "../shared/shows";
+import { USERS } from "../shared/users";
+
 import { useSelector, useDispatch } from "react-redux";
 import { addList } from "../redux/ActionCreators";
 
@@ -10,16 +12,24 @@ import history from "../history";
 function ListDetail(props) {
   const dispatch = useDispatch();
 
+  const userLogged = useSelector((state) => state.user);
+  const isLogged = JSON.stringify(userLogged) !== "{}";
+
   const lists = useSelector((state) => state.lists);
   const currentList = lists.lists.filter(
     (list) => list.id === Number(props.listId)
   )[0];
+  currentList.user = USERS.find(
+    (user) => user.id === currentList.userId
+  ).username;
   const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
 
   function saveList(list) {
-    const newList = { ...list, user: "Let's Rank" };
+    const newList = { ...list, userId: userLogged.id };
     const newObject = dispatch(addList(newList));
-    history.push(`/myLists/Let's Rank/${newObject.payload.id}?save=success`);
+    history.push(
+      `/myLists/${userLogged.id}/${newObject.payload.id}?save=success`
+    );
   }
 
   return (
@@ -35,15 +45,17 @@ function ListDetail(props) {
             </h1>
             <h6>by {currentList.user}</h6>
           </div>
-          <div className="align-self-center">
-            <button
-              className="btn btn-primary"
-              disabled={currentList.user === "Let's Rank" ? true : false}
-              onClick={() => saveList(currentList)}
-            >
-              <i className="bi bi-plus-square"></i> Save List
-            </button>
-          </div>
+          {isLogged && (
+            <div className="align-self-center">
+              <button
+                className="btn btn-primary"
+                disabled={userLogged.username === currentList.user}
+                onClick={() => saveList(currentList)}
+              >
+                <i className="bi bi-plus-square"></i> Save List
+              </button>
+            </div>
+          )}
         </div>
         <div className="col-2 text-truncate text-end">
           <h3>

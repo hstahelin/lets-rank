@@ -12,13 +12,18 @@ import {
 } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addList } from "../redux/ActionCreators";
+import { addUser } from "../redux/ActionCreators";
 
 // import { GENRES } from "../shared/genres";
 
 function Header(props) {
   const history = useHistory();
+
+  const userLogged = useSelector((state) => state.user);
+  const isLogged = JSON.stringify(userLogged) !== "{}";
+  // console.log(userLogged);
 
   const dispatch = useDispatch();
 
@@ -30,7 +35,7 @@ function Header(props) {
   function handleSubmit(event) {
     const newList = {
       name: listName,
-      user: "Let's Rank",
+      userId: userLogged.id,
       list: [],
     };
     const createdList = dispatch(addList(newList));
@@ -38,7 +43,7 @@ function Header(props) {
     setListName("");
     event.preventDefault();
     toggleModal();
-    history.push(`/myLists/Let's Rank/${createdList.payload.id}`);
+    history.push(`/myLists/${userLogged.id}/${createdList.payload.id}`);
   }
 
   function handleSearchSubmit(event) {
@@ -48,6 +53,11 @@ function Header(props) {
 
   function handleSearchChange(event) {
     props.onChange(event);
+  }
+
+  function logout() {
+    dispatch(addUser({}));
+    history.push("/login");
   }
 
   return (
@@ -85,26 +95,39 @@ function Header(props) {
                   <i className="bi bi-house"></i> Home
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/myLists/Let's Rank">
+              {isLogged && (
+                <LinkContainer to={`/myLists/${userLogged.id}`}>
+                  <Nav.Link className="mx-2 my-auto text-nowrap">
+                    <i className="bi bi-list-ul"></i> My Lists
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {isLogged && (
                 <Nav.Link
-                  href="/myLists/Let's Rank"
                   className="mx-2 my-auto text-nowrap"
+                  onClick={toggleModal}
                 >
-                  <i className="bi bi-list-ul"></i> My Lists
+                  <i className="bi bi-plus"></i> Create List
                 </Nav.Link>
-              </LinkContainer>
-              <Nav.Link
-                className="mx-2 my-auto text-nowrap"
-                onClick={toggleModal}
-              >
-                <i className="bi bi-plus"></i> Create List
-              </Nav.Link>
+              )}
+              {!isLogged && (
+                <Nav.Link className="mx-2 my-auto text-nowrap" disabled>
+                  <i className="bi bi-plus"></i> Create List
+                </Nav.Link>
+              )}
 
-              <LinkContainer to="/login">
-                <Nav.Link href="/login" className="mx-2 my-auto text-nowrap">
-                  <i className="bi bi-box-arrow-in-left"></i> Login/SignUp
+              {!isLogged && (
+                <LinkContainer to="/login">
+                  <Nav.Link href="/login" className="mx-2 my-auto text-nowrap">
+                    <i className="bi bi-box-arrow-in-left"></i> Login/SignUp
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {isLogged && (
+                <Nav.Link className="mx-2 my-auto text-nowrap" onClick={logout}>
+                  <i className="bi bi-box-arrow-left"></i> Logout
                 </Nav.Link>
-              </LinkContainer>
+              )}
 
               <LinkContainer to="/about">
                 <Nav.Link
@@ -114,17 +137,16 @@ function Header(props) {
                   <i className="bi bi-question-circle"></i> How it works
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/user/Let's Rank">
-                <Nav.Link
-                  href="/user/Let's Rank"
-                  className="text-info mx-2 my-auto large"
-                >
-                  <h2 className="my-auto">
-                    <i className="bi bi-person-badge mb-0"></i>
-                  </h2>
-                  <p className="small mb-0">{"<user>"}</p>
-                </Nav.Link>
-              </LinkContainer>
+              {isLogged && (
+                <LinkContainer to={`/user/${userLogged.id}?own=true`}>
+                  <Nav.Link className="text-info mx-2 my-auto large">
+                    <h2 className="my-auto">
+                      <i className="bi bi-person-badge mb-0"></i>
+                    </h2>
+                    <p className="small mb-0">{userLogged.username}</p>
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

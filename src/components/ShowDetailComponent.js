@@ -10,8 +10,11 @@ import { addShowList } from "../redux/ActionCreators";
 function ShowDetail(props) {
   const dispatch = useDispatch();
 
+  const userLogged = useSelector((state) => state.user);
+  const isLogged = JSON.stringify(userLogged) !== "{}";
+
   const lists = useSelector((state) => state.lists);
-  const myLists = lists.lists.filter((list) => list.user === "Let's Rank");
+  const myLists = lists.lists.filter((list) => list.userId === userLogged.id);
 
   const show = SHOWS.filter((elem) => elem.id === props.showId)[0];
   const history = useHistory();
@@ -20,7 +23,7 @@ function ShowDetail(props) {
 
   function addToList(showId) {
     dispatch(addShowList(selectList, showId));
-    history.push(`/myLists/Let's Rank/${selectList}?save=show`);
+    history.push(`/myLists/${userLogged.id}/${selectList}?save=show`);
   }
 
   function handleSelectList(e) {
@@ -106,14 +109,14 @@ function ShowDetail(props) {
                 <p>
                   <strong>Included in: </strong>
                   <Link to={`/included/${show.id}`}>
-                    <Badge bg="primary">
+                    <Badge bg="primary" className="included">
                       {
                         lists.lists.filter((list) =>
                           list.list.includes(show.id)
                         ).length
                       }{" "}
                       Lists
-                    </Badge>{" "}
+                    </Badge>
                   </Link>
                   {/* <Badge bg="primary">
                     {LISTS.filter((list) => list.list.includes(show.id)).length}{" "}
@@ -122,43 +125,48 @@ function ShowDetail(props) {
                 </p>
               </div>
             </div>
-            <div className="row">
-              <div className="col-12 col-md-10 col-lg-8">
-                <Form>
-                  <Form.Group>
-                    <InputGroup className="mb-3">
-                      <InputGroup.Text id="addToList">
-                        <i className="bi bi-plus-square"></i>
-                      </InputGroup.Text>
-                      <Form.Select
-                        defaultValue={selectList}
-                        onChange={(e) => handleSelectList(e)}
-                      >
-                        <option value="-1">Select List</option>
-                        {myLists.map((list) => (
-                          <option
-                            key={list.id}
-                            value={list.id}
-                            disabled={list.list.includes(show.id)}
-                          >
-                            {list.name}
-                          </option>
-                        ))}
-                      </Form.Select>
-                      <Button
-                        variant="primary"
-                        onClick={(e) => addToList(show.id)}
-                      >
-                        Add to List
-                      </Button>
-                      {/* <Button variant="success" className="ms-1">
+            {isLogged && (
+              <div className="row">
+                <div className="col-12 col-md-10 col-lg-8">
+                  <Form>
+                    <Form.Group>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Text id="addToList">
+                          <i className="bi bi-plus-square"></i>
+                        </InputGroup.Text>
+                        <Form.Select
+                          defaultValue={selectList}
+                          onChange={(e) => handleSelectList(e)}
+                        >
+                          <option value="-1">Select List</option>
+                          {myLists.map((list) => (
+                            <option
+                              key={list.id}
+                              value={list.id}
+                              disabled={
+                                list.list.includes(show.id) ||
+                                list.list.length >= 10
+                              }
+                            >
+                              {list.name}
+                            </option>
+                          ))}
+                        </Form.Select>
+                        <Button
+                          variant="primary"
+                          onClick={(e) => addToList(show.id)}
+                        >
+                          Add to List
+                        </Button>
+                        {/* <Button variant="success" className="ms-1">
                         Create List
                       </Button> */}
-                    </InputGroup>
-                  </Form.Group>
-                </Form>
+                      </InputGroup>
+                    </Form.Group>
+                  </Form>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -19,3 +19,8 @@ export const removeShowList = (listId, showId) => ({
   type: ActionTypes.REMOVE_SHOW_LIST,
   payload: { listId, showId },
 });
+
+export const addUser = (user) => ({
+  type: ActionTypes.ADD_USER,
+  payload: user,
+});

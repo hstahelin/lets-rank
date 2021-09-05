@@ -73,3 +73,7 @@
   /* font-family: 'Montserrat', sans-serif; */
   font-weight: 400;
 }
+
+.included {
+  box-shadow: 5px -5px 10px #A9D6E5;
+}

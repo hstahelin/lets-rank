@@ -1,9 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import ListCardPreview from "./ListCardPreviewComponent";
 import ShowPreview from "./ShowPreviewComponent";
 import HelpAlert from "./HelpAlertComponent";
+import { SHOWS } from "../shared/shows";
 
-function Home(props) {
+function Home() {
+  const lists = useSelector((state) => state.lists);
+
+  const popular = SHOWS.map((show) => ({
+    id: show.id,
+    included: lists.lists
+      .map((list) => list.list.filter((i) => i === show.id))
+      .filter((e) => e.length > 0).length,
+  }));
+
+  popular.sort((a, b) => b.included - a.included).splice(12);
+
   return (
     <div>
       <div className="container mt-4">
@@ -28,12 +41,9 @@ function Home(props) {
           </div>
         </div>
         <div className="row">
-          <ShowPreview showId="169" />
-          <ShowPreview showId="82" />
-          <ShowPreview showId="431" />
-          <ShowPreview showId="83" />
-          <ShowPreview showId="1" />
-          <ShowPreview showId="2" />
+          {popular.map((show) => (
+            <ShowPreview key={show.id} showId={show.id} />
+          ))}
         </div>
       </div>
     </div>

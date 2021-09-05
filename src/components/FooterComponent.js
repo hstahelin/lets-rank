@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function Footer(props) {
+function Footer() {
+  const userLogged = useSelector((state) => state.user);
+  const isLogged = JSON.stringify(userLogged) !== "{}";
+
   return (
     <footer className="p-3 site-footer mt-4">
       <div className="container">
@@ -13,12 +17,14 @@ function Footer(props) {
             >
               <i className="bi bi-house"></i> Home
             </Link>
-            <Link
-              to="/myLists/Let's Rank"
-              className="text-decoration-none border-end border-info px-2 text-nowrap"
-            >
-              <i className="bi bi-list-ul"></i> My List
-            </Link>
+            {isLogged && (
+              <Link
+                to={`/myLists/${userLogged.id}`}
+                className="text-decoration-none border-end border-info px-2 text-nowrap"
+              >
+                <i className="bi bi-list-ul"></i> My List
+              </Link>
+            )}
             <Link to="/about" className="text-decoration-none px-2 text-nowrap">
               <i className="bi bi-question"></i> Help
             </Link>

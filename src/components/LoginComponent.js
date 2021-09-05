@@ -1,8 +1,48 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { Form, Button, Alert } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/ActionCreators";
+
+import { USERS } from "../shared/users";
 
 function Login() {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const [login, setLogin] = useState(true);
+
+  const [loginError, setLoginError] = useState(false);
+  const [infoLogin, setInfoLogin] = useState({ user: "", password: "" });
+
+  function handleLoginChange(e) {
+    if (e.target.name === "username") {
+      setInfoLogin({ ...infoLogin, user: e.target.value });
+    }
+    if (e.target.name === "password") {
+      setInfoLogin({ ...infoLogin, password: e.target.value });
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setInfoLogin({ user: "", password: "" });
+    const userLogged = USERS.filter(
+      (user) =>
+        user.username === infoLogin.user && user.password === infoLogin.password
+    );
+
+    if (userLogged.length > 0) {
+      dispatch(addUser(userLogged[0]));
+      //console.log(userIn);
+      history.push("/home");
+    }
+
+    if (userLogged.length === 0) {
+      setLoginError(true);
+    }
+  }
 
   return (
     <div className="container mt-4">
@@ -16,34 +56,40 @@ function Login() {
               <h1>Login</h1>
             </div>
             <div className="card-body">
-              <form action="/home">
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Email"
+              {loginError && (
+                <Alert variant="danger">Incorrect Username or Password!</Alert>
+              )}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="username">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    value={infoLogin.user}
+                    onChange={handleLoginChange}
                   />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Password
-                  </label>
-                  <input
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    name="password"
                     type="password"
-                    className="form-control"
-                    id="exampleInputPassword1"
                     placeholder="Password"
+                    value={infoLogin.password}
+                    onChange={handleLoginChange}
                   />
-                </div>
-                <div className="mb-1">
-                  <button type="submit" className="btn btn-primary">
-                    Login
-                  </button>
-                </div>
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="mb-3"
+                  onSubmit={handleSubmit}
+                >
+                  Login
+                </Button>
+
                 <div className="mb-4">
                   <Link to="#" className="text-decoration-none">
                     <small>Forgot Your Password?</small>
@@ -60,7 +106,20 @@ function Login() {
                     Don't have an account? SignUp here
                   </Link>
                 </div>
-              </form>
+                <hr />
+
+                <div className="text-center">
+                  <h5>Test Users:</h5>
+                  <h6>
+                    <small>Username: Peters_718 / Password: Peters_718</small>
+                  </h6>
+                  <h6>
+                    <small>
+                      Username: Kirkland_990 / Password: Kirkland_990
+                    </small>
+                  </h6>
+                </div>
+              </Form>
             </div>
           </div>
         </div>
@@ -72,6 +131,11 @@ function Login() {
           <div className="card">
             <div className="card-header">
               <h1>SignUp</h1>
+              <h6>
+                <small>
+                  <i>Not yet implemented</i>
+                </small>
+              </h6>
             </div>
             <div className="card-body">
               <form action="/home">
@@ -133,8 +197,8 @@ function Login() {
                     />
                   </div>
                   <div className="mb-4 d-flex justify-content-end">
-                    <button type="submit" className="btn btn-primary">
-                      SignUp
+                    <button type="submit" className="btn btn-danger" disabled>
+                      Not yet implemented
                     </button>
                   </div>
                   <hr />

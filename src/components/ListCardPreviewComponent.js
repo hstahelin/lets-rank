@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useSelector } from "react-redux";
 import { SHOWS } from "../shared/shows";
+import { USERS } from "../shared/users";
 import Match from "./MatchComponent";
 import history from "../history";
 
@@ -11,14 +12,22 @@ import { useDispatch } from "react-redux";
 import { addList } from "../redux/ActionCreators";
 
 function ListCardPreview(props) {
+  const userLogged = useSelector((state) => state.user);
+  const isLogged = JSON.stringify(userLogged) !== "{}";
+
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.lists);
   const displayList = lists.lists.find((list) => list.id === props.list);
+  displayList.user = USERS.find(
+    (user) => user.id === displayList.userId
+  ).username;
 
   function saveList(list) {
-    const newList = { ...list, user: "Let's Rank" };
+    const newList = { ...list, userId: userLogged.id };
     const newObject = dispatch(addList(newList));
-    history.push(`/myLists/Let's Rank/${newObject.payload.id}?save=success`);
+    history.push(
+      `/myLists/${userLogged.id}/${newObject.payload.id}?save=success`
+    );
   }
 
   const showList = SHOWS.filter((show) => displayList.list.includes(show.id));
@@ -29,7 +38,7 @@ function ListCardPreview(props) {
           <Card.Header className="pb-0">
             <h5 className="fw-bold text-truncate">{displayList.name}</h5>
             <Link
-              to={`/user/${displayList.user}`}
+              to={`/user/${displayList.userId}`}
               className="text-decoration-none"
             >
               <p className="fs-6 mb-0 text-end">by {displayList.user}</p>
@@ -139,7 +148,7 @@ function ListCardPreview(props) {
             <Button
               size="sm"
               onClick={() => saveList(displayList)}
-              disabled={displayList.user === "Let's Rank" ? true : false}
+              disabled={!isLogged || userLogged.id === +displayList.userId}
             >
               <i className="bi bi-plus-square text-light"></i> Save List
             </Button>

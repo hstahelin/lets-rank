@@ -19,13 +19,11 @@ function ShowDetailWithId({ match }) {
 }
 
 function MyListsUser({ match }) {
-  return <MyLists username={match.params.username} />;
+  return <MyLists userId={match.params.userId} />;
 }
 
 function MyListsUserList({ match }) {
-  return (
-    <MyLists username={match.params.username} listId={match.params.listId} />
-  );
+  return <MyLists userId={match.params.userId} listId={match.params.listId} />;
 }
 
 function ListWithId({ match }) {
@@ -37,7 +35,7 @@ function RecommendationWithId({ match }) {
 }
 
 function UserWithId({ match }) {
-  return <UserInfo username={match.params.username} />;
+  return <UserInfo userId={match.params.userId} />;
 }
 
 function Main() {
@@ -73,11 +71,8 @@ function Main() {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/show/:showId" component={ShowDetailWithId} />
-          <Route
-            path="/myLists/:username/:listId"
-            component={MyListsUserList}
-          />
-          <Route path="/myLists/:username" component={MyListsUser} />
+          <Route path="/myLists/:userId/:listId" component={MyListsUserList} />
+          <Route path="/myLists/:userId" component={MyListsUser} />
           <Route path="/list/:listId" component={ListWithId} />
           <Route path="/about" component={About} />
           <Route path="/search" component={SearchresultsWithQ} />
@@ -85,7 +80,7 @@ function Main() {
             path="/recommendations/:listId"
             component={RecommendationWithId}
           />
-          <Route path="/user/:username" component={UserWithId} />
+          <Route path="/user/:userId" component={UserWithId} />
           <Route path="/login" component={Login} />
           <Route path="/included/:showId" component={IncludedWithId} />
           <Route path="/" component={Home} />
