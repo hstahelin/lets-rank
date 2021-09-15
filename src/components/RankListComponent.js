@@ -3,7 +3,7 @@ import { ListGroup, Image, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { rankList, removeShowList } from "../redux/ActionCreators";
+import { rankList } from "../redux/ActionCreators";
 import { SHOWS } from "../shared/shows";
 import { USERS } from "../shared/users";
 
