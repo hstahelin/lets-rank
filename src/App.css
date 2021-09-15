@@ -77,3 +77,13 @@
 .included {
   box-shadow: 5px -5px 10px #A9D6E5;
 }
+
+.rankBorder {
+  border-left: 5px dotted #013A63;
+}
+
+.rankText {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* border-radius: 50px; */
+  text-shadow: 2px 2px 2px #A9D6E5;
+}

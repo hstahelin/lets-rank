@@ -22,7 +22,10 @@ function ListDetail(props) {
   currentList.user = USERS.find(
     (user) => user.id === currentList.userId
   ).username;
-  const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+  //const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+  const shows = currentList.list.map(
+    (id) => SHOWS.filter((show) => show.id === id)[0]
+  );
 
   function saveList(list) {
     const newList = { ...list, userId: userLogged.id };

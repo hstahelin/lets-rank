@@ -44,6 +44,16 @@ function HelpAlert(props) {
       </Alert>
     );
   }
+  if (showAlert && props.source === "rankList") {
+    return (
+      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+        <h4>
+          <i className="bi bi-check-circle"></i> SUCCESS!
+        </h4>
+        <p>Your list rank has been saved.</p>
+      </Alert>
+    );
+  }
   return <div />;
 }
 

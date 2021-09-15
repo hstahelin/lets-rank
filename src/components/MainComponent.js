@@ -13,6 +13,7 @@ import history from "../history";
 import UserInfo from "./UserInfoComponent";
 import Login from "./LoginComponent";
 import Included from "./IncludedComponent";
+import RankList from "./RankListComponent";
 
 function ShowDetailWithId({ match }) {
   return <ShowDetail showId={+match.params.showId} />;
@@ -60,6 +61,10 @@ function Main() {
     return <Included showId={match.params.showId} />;
   }
 
+  function RankListWithId({ match }) {
+    return <RankList listId={match.params.listId} />;
+  }
+
   return (
     <div>
       <Router history={history}>
@@ -83,6 +88,7 @@ function Main() {
           <Route path="/user/:userId" component={UserWithId} />
           <Route path="/login" component={Login} />
           <Route path="/included/:showId" component={IncludedWithId} />
+          <Route path="/rank/:listId" component={RankListWithId} />
           <Route path="/" component={Home} />
           <Redirect to="/home" />
         </Switch>

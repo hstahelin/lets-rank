@@ -30,7 +30,10 @@ function MyLists(props) {
     const currentList = lists.lists.filter(
       (list) => list.id === Number(listId)
     )[0];
-    const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+    //const shows = SHOWS.filter((show) => currentList.list.includes(show.id));
+    const shows = currentList.list.map(
+      (id) => SHOWS.filter((show) => show.id === id)[0]
+    );
 
     function removeShow(listId, showId) {
       dispatch(removeShowList(listId, showId));
@@ -45,6 +48,8 @@ function MyLists(props) {
         <div className="container mt-4">
           {save === "success" && <HelpAlert source="saveList" />}
           {save === "show" && <HelpAlert source="addShow" />}
+          {save === "rank" && <HelpAlert source="rankList" />}
+
           <div className="row featured mb-3">
             <div className="col">
               <h1>
@@ -85,12 +90,20 @@ function MyLists(props) {
               </div>
               <div className="align-self-center">
                 {currentList.list.length > 0 && (
-                  <Link
-                    to={`/recommendations/${listId}`}
-                    className="btn btn-info btn-sm"
-                  >
-                    <i className="bi bi-stars"></i> Get recommendations
-                  </Link>
+                  <React.Fragment>
+                    <Link
+                      to={`/recommendations/${listId}`}
+                      className="btn btn-info btn-sm mt-2"
+                    >
+                      <i className="bi bi-stars"></i> Get recommendations
+                    </Link>
+                    <Link
+                      to={`/rank/${listId}`}
+                      className="btn btn-success btn-sm ms-2 mt-2"
+                    >
+                      <i className="bi bi-list-stars"></i> Let's Rank
+                    </Link>
+                  </React.Fragment>
                 )}
               </div>
             </div>

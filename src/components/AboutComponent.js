@@ -48,6 +48,7 @@ function About() {
               Search for your favorite TV Show.
             </li>
             <li className="list-group-item">Add that TV Show to your List.</li>
+            <li className="list-group-item">Rank the shows on your List.</li>
             <li className="list-group-item">
               Once you have between 5 - 10 shows on your list, hit the{" "}
               <strong>

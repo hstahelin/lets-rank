@@ -30,7 +30,10 @@ function ListCardPreview(props) {
     );
   }
 
-  const showList = SHOWS.filter((show) => displayList.list.includes(show.id));
+  //const showList = SHOWS.filter((show) => displayList.list.includes(show.id));
+  const showList = displayList.list.map(
+    (id) => SHOWS.filter((show) => show.id === id)[0]
+  );
   if (displayList.list.length > 0) {
     return (
       <div className="col-12 col-sm-6 col-lg-3 mb-3">
@@ -119,14 +122,14 @@ function ListCardPreview(props) {
                     <Accordion.Header>Preview</Accordion.Header>
                     <Accordion.Body className="px-0">
                       <ListGroup variant="flush">
-                        {showList.map((show) => (
+                        {showList.map((show, index) => (
                           <ListGroup.Item
                             key={show.id}
                             as={Link}
                             to={`/show/${show.id}`}
                             action
                           >
-                            {show.name}
+                            {index + 1}. {show.name}
                           </ListGroup.Item>
                         ))}
                       </ListGroup>

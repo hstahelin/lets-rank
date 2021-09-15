@@ -10,6 +10,11 @@ export const removeList = (listId) => ({
   payload: listId,
 });
 
+export const rankList = (listId, list) => ({
+  type: ActionTypes.RANK_LIST,
+  payload: { listId, list },
+});
+
 export const addShowList = (listId, showId) => ({
   type: ActionTypes.ADD_SHOW_LIST,
   payload: { listId, showId },

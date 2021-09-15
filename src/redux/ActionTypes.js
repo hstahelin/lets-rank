@@ -1,5 +1,6 @@
 export const ADD_LIST = "ADD_LIST";
 export const REMOVE_LIST = "REMOVE_LIST";
+export const RANK_LIST = "RANK_LIST";
 
 export const ADD_SHOW_LIST = "ADD_SHOW_LIST";
 export const REMOVE_SHOW_LIST = "REMOVE_SHOW_LIST";

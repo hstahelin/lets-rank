@@ -23,7 +23,6 @@ function Header(props) {
 
   const userLogged = useSelector((state) => state.user);
   const isLogged = JSON.stringify(userLogged) !== "{}";
-  // console.log(userLogged);
 
   const dispatch = useDispatch();
 
@@ -39,7 +38,6 @@ function Header(props) {
       list: [],
     };
     const createdList = dispatch(addList(newList));
-    // console.log(createdList.payload.id);
     setListName("");
     event.preventDefault();
     toggleModal();
