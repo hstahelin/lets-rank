@@ -102,7 +102,15 @@ function ShowDetail(props) {
                 </p>
                 <p>
                   <strong>Status: </strong>
-                  <Badge bg={show.status === "Ended" ? "danger" : "success"}>
+                  <Badge
+                    bg={
+                      show.status === "Ended"
+                        ? "danger"
+                        : show.status === "Running"
+                        ? "success"
+                        : "warning"
+                    }
+                  >
                     {show.status}
                   </Badge>
                 </p>

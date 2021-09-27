@@ -25,7 +25,17 @@ function Recommendation(props) {
         ),
       }));
 
-    return filteredList.sort((a, b) => b.match - a.match).slice(0, 8);
+    const topFilter = filteredList
+      .sort(
+        (a, b) =>
+          b.match / currentList.list.length -
+            a.match / currentList.list.length || b.list.length - a.list.length
+      )
+      .slice(0, 12);
+
+    // console.log(topFilter);
+
+    return topFilter;
   }
 
   const recommendList = getRecommendations(currentList);
@@ -57,7 +67,7 @@ function Recommendation(props) {
           <ListCardPreview
             key={list.id}
             list={list.id}
-            match={5 * (list.match / list.list.length)}
+            match={5 * (list.match / currentList.list.length)}
             source="recommendation"
           />
         ))}
