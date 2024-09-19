@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Let's Rank
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+**Let's Rank** is a front-end application that allows users to create ranked lists of their favorite TV shows. By leveraging the collective preferences of other users, you can receive personalized recommendations tailored to your picks, making it easier to discover new shows that align with your tastes.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- Create and manage ranked lists of TV shows.
+- Get recommendations based on other users' lists that match your selections.
+- User-friendly interface built with React and Bootstrap.
+- Ideal for those seeking personalized recommendations rather than generic lists of popular shows.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `yarn test`
+Ensure you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (version 14 or higher)
+- npm (version 6 or higher)
 
-### `yarn build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/hstahelin/lets-rank.git
+   cd lets-rank
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install the dependencies:
 
-### `yarn eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Start the development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   Your application should now be running at `http://localhost:3000`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Libraries Used
 
-## Learn More
+This project utilizes the following libraries, as specified in the `package.json`:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **React**: A JavaScript library for building user interfaces.
+- **Bootstrap**: A CSS framework for responsive design and styling.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+lets-rank/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── components/       # React components
+│   ├── App.js            # Main application component
+│   └── index.js          # Entry point of the application
+├── package.json          # Project metadata and dependencies
+└── README.md             # Project documentation
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+1. **Create a Ranked List**: Navigate to the "Create List" section to start ranking your favorite TV shows.
+2. **Get Recommendations**: After creating your list, check the recommendations section to discover shows recommended based on your rankings.
+3. **Explore Others' Lists**: Browse through public lists created by other users for more inspiration.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
 
-### Making a Progressive Web App
+Contributions are welcome! If you have suggestions or find any issues, please create a pull request or open an issue in the repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to reach out if you have any questions or feedback about **Let's Rank**! Enjoy discovering your next favorite TV show!
